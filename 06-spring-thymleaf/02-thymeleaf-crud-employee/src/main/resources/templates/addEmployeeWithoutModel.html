@@ -1,0 +1,15 @@
+
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title> Add Employee</title>
+</head>
+<body>
+<form th:action = "@{/employees/addByParam}" th:method="post">
+    <input type="text" placeholder="Enter Employee's name..." name="passedName">
+    <input type="text" placeholder="Enter Department.." name="passedDept">
+    <button type="submit" class="submit">Save employee</button>
+</form>
+
+</body>
+
+</html>

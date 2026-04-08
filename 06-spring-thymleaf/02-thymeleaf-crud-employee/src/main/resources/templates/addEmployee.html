@@ -1,0 +1,18 @@
+
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title> Add Employee</title>
+    <link rel="stylesheet" th:href="@{/css/addEmployee.css}">
+</head>
+<body>
+<form th:action = "@{/employees/add}" th:object="${emp}" th:method="post">
+    <h2>Add Employee</h2>
+    <input type="text" placeholder="Enter Employee's name..." th:field="*{name}">
+    <input type="text" placeholder="Enter Department.." th:field="*{dept}">
+    <button type="submit" class="submit">Save employee</button>
+</form>
+
+
+</body>
+
+</html>

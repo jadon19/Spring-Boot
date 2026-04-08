@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Employees</title>
+    <link rel="stylesheet" th:href="@{/css/homepage.css}">
+</head>
+<body>
+    <h1>Employee List</h1>
+
+    <a th:href="@{/employees/add}">
+        <button style="margin-bottom: 15px;">+ Add Employee</button>
+    </a>
+    <div th:each ="emp : ${employees}" class="table">
+        <div th:text="${emp.name}" class="name"></div>
+        <div th:text = "${emp.dept}" class="dept"></div>
+        <div class="buttons">
+            <a th:href="@{/employees/delete/{id}(id =${emp.id})}"  ><button class="delete-button">Delete</button></a>
+            <a th:href="@{/employees/update/{id}(id =${emp.id})}" ><button  class="edit-button">Edit</button></a>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
