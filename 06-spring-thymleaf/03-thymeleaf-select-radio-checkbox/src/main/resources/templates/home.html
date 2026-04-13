@@ -1,0 +1,26 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<form th:action="@{/displayLocation}" method="post">
+    <select name="loc" >
+        <option th:each = "location : ${locations}" th:value="${location}" th:text="${location}"></option>
+    </select>
+    <div th:each="lan : ${languages}">
+        <input type="radio"
+               name="lan"
+               th:value="${lan}" />
+        <label th:text="${lan}"></label>
+        <br/>
+    </div>
+
+
+    <div th:each="opsys : ${os}">
+        <input type="checkbox"
+               name="opsys"
+               th:value="${opsys}" />
+        <label th:text="${opsys}"></label>
+        <br/>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+        .error{
+        color:red;}
+    </style>
+</head>
+<body>
+    <i>Fill out the form. Required is marked by '*'</i>
+    <form th:action="@{/processForm}" th:object="${customer}" th:method="POST">
+        First Name: <input type="text" th:field="*{firstName}"><br><br>
+        Last Name (*): <input type="text" th:field="*{lastName}">
+<!--        Have to add error msg      -->
+        <span th:if="${#fields.hasErrors('lastName')}"
+              th:errors="*{lastName}" class="error"></span> <br><br>
+        Age: <input type="text" th:field="*{age}">
+        <span
+            th:if="${#fields.hasErrors('age')}"
+            th:errors="*{age}"
+        class="error"></span> <br><br>
+
+        Course Code:
+        <input type="text" th:field="*{courseCode}">
+        <span th:if ="${#fields.hasErrors('courseCode')}"
+              th:errors = "*{courseCode}"
+        class="error"></span>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

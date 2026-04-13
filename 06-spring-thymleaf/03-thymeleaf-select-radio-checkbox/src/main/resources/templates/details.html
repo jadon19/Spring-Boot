@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Selected Location</title>
+</head>
+<body>
+
+<h2>Selected Content</h2>
+
+<p>
+    Location:
+    <span th:text="${selectedLocation}">Location here</span>
+    <br><br>
+    Language:
+    <span th:text="${selectedLanguage}">Language</span>
+    <br><br>
+    Operating systems
+    <ul th:each="op:${selectedOs}">
+        <li th:text="${op}"></li>
+    </ul>
+</p>
+
+</body>
+</html>
