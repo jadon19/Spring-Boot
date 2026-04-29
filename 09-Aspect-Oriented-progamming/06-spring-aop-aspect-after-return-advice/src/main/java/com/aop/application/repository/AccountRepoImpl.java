@@ -1,0 +1,33 @@
+package com.aop.application.repository;
+
+import com.aop.application.Account;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import javax.accessibility.Accessible;
+import java.util.ArrayList;
+import java.util.List;
+
+@Repository
+public class AccountRepoImpl implements AccountRepo{
+    private List<Account> accountList;
+    public AccountRepoImpl(){
+        this.accountList = new ArrayList<>();
+        Account acc1 = new Account("tanishka",2352358);
+        Account acc2 = new Account("yashaswi",4323235);
+        Account acc3 = new Account("deepali",4253453);
+        accountList.add(acc1);
+        accountList.add(acc2);
+        accountList.add(acc3);
+    }
+    @Override
+    public void addAccount() {
+        System.out.println(getClass().getName()+" : Adding account to database\n");
+    }
+
+    @Override
+    public List<Account> findAllAccounts() {
+        System.out.println(accountList);
+        return accountList;
+    }
+}
