@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 @Configuration
 public class DemoSecurity {
 @Bean
-    public UserDetailsServices users(DataSource ds){
+    public UserDetailsService users(DataSource ds){
         return new JdbcUserDetailsManager();
 //        using plain text and bcrypt
 }
