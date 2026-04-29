@@ -1,0 +1,19 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Home page</title>
+</head>
+<body>
+
+<h2> Manager Page</h2>
+<hr>
+Welcome to the company's home page
+<p>
+    User: <span sec:authentication="principal.username"></span>
+    <br>
+    <br>
+    Role: <span sec:authentication="principal.authorities"></span>
+<p>This is only viewed by manager!!</p>
+
+<hr>
+</body>
+</html>

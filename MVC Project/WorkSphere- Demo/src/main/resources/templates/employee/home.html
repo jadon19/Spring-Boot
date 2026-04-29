@@ -1,0 +1,256 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Employee Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            background: #f9fafb;
+            color: #111827;
+        }
+
+        .topbar {
+            background: #1f2937;
+            color: white;
+            padding: 0 25px;
+            height: 64px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .topbar .brand {
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            font-size: 18px;
+        }
+
+        .container {
+            display: flex;
+            min-height: calc(100vh - 64px);
+        }
+
+        .sidebar {
+            width: 260px;
+            background: #f3f4f6;
+            padding: 24px 16px;
+            border-right: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-nav {
+            flex-grow: 1;
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            margin-bottom: 4px;
+            text-decoration: none;
+            color: #4b5563;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar a:hover {
+            background: #e0e7ff;
+            color: #1f2937;
+        }
+
+        .sidebar form {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .sidebar form input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            background: white;
+            color: #374151;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar form input:hover {
+            background: #f9fafb;
+            border-color: #9ca3af;
+        }
+
+        .main {
+            flex: 1;
+            padding: 40px;
+            max-width: 1200px;
+        }
+
+        .header-section {
+            margin-bottom: 32px;
+        }
+
+        .main h2 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 800;
+            color: #111827;
+        }
+
+        .main p {
+            color: #6b7280;
+            margin: 8px 0 0 0;
+            font-size: 16px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .cards a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card {
+            padding: 28px;
+            background: #eef2ff;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #312e81;
+        }
+
+        .card-hint {
+            font-size: 13px;
+            font-weight: 400;
+            color: #6366f1;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .card:hover {
+            background: #ddd6fe;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-footer {
+            margin-top: 40px;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            font-size: 14px;
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .role-badge {
+            background: #f3f4f6;
+            color: #1f2937;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <div class="brand">WorkSphere</div>
+    <div>
+        User: <strong sec:authentication="principal.username"></strong>
+    </div>
+</div>
+
+<div class="container">
+    <div class="sidebar">
+        <div class="sidebar-nav">
+            <a th:href="@{/dashboard}">Home</a>
+            <a th:href="@{/employee/settings}">Settings</a>
+            <div sec:authorize="hasRole('MANAGER')">
+                <a th:href="@{/manager}">Manager Dashboard</a>
+            </div>
+            <div sec:authorize="hasRole('ADMIN')">
+                <a th:href="@{/admin}">Admin Dashboard</a>
+            </div>
+        </div>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out">
+        </form>
+    </div>
+
+    <div class="main">
+        <div class="header-section">
+            <h2>Welcome back</h2>
+            <p>Manage your activities and track your progress efficiently.</p>
+        </div>
+
+        <div class="cards">
+            <a th:href="@{/employee/profile}">
+                <div class="card">
+                    <span class="card-title">👤 View Profile</span>
+                    <span class="card-hint">Manage personal details →</span>
+                </div>
+            </a>
+
+            <a th:href="@{/employee/timesheet}">
+                <div class="card">
+                    <span class="card-title">⏱ Timesheet</span>
+                    <span class="card-hint">Log your work hours →</span>
+                </div>
+            </a>
+
+            <a th:href="@{/employee/leave}">
+                <div class="card">
+                    <span class="card-title">📝 Apply Leave</span>
+                    <span class="card-hint">Request time off →</span>
+                </div>
+            </a>
+
+            <a th:href="@{/employee/team}">
+                <div class="card">
+                    <span class="card-title">👥 Team Profiles</span>
+                    <span class="card-hint">View your colleagues →</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="info-footer">
+            <span>Current Permissions:</span>
+            <span class="role-badge" sec:authentication="principal.authorities"></span>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

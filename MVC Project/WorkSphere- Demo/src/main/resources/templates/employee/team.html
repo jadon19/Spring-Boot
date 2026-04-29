@@ -1,0 +1,16 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link  rel="stylesheet"  th:href="@{/dashboard.css}">
+</head>
+<body>
+<div class="container">
+    <h2>Team Members</h2>
+
+    <div class="card" th:each="member : ${team}">
+        <p><strong>Name:</strong> <span th:text="member name"></span></p>
+        <p><strong>Email:</strong> <span th:text="member email"></span></p>
+        <p><strong>Role:</strong> <span th:text="member role"></span></p>
+    </div>
+</div>
+</body>
+</html>

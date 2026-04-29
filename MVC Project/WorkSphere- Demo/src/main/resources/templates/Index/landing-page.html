@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>WorkSphere</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: #1f2937;
+        }
+
+        .logo {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .login {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+        }
+
+        .signup {
+            background: #4f46e5;
+            color: white;
+        }
+
+        .hero {
+            display: flex;
+            padding: 50px;
+            background: #f3f4f6;
+        }
+
+        .hero-left {
+            flex: 1;
+        }
+
+        .hero-left h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .hero-left p {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .hero-right {
+            flex: 1;
+            background: #c7d2fe;
+            border-radius: 10px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            padding: 50px;
+            background: #fff;
+        }
+
+        .feature-box {
+            padding: 20px;
+            border-radius: 12px;
+            background: #f9fafb;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .number {
+            width: 40px;
+            height: 40px;
+            background: #fbcfe8;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .feature-box h3 {
+            margin-bottom: 10px;
+        }
+
+        .feature-box p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .content {
+            display: flex;
+            padding: 50px;
+            background: #eef2ff;
+        }
+
+        .content-left {
+            flex: 1;
+        }
+
+        .content-left h2 {
+            margin-bottom: 15px;
+        }
+
+        .content-left p {
+            color: #555;
+        }
+
+        .content-right {
+            flex: 1;
+            background: #ddd6fe;
+            border-radius: 10px;
+        }
+
+        .reviews {
+            padding: 50px;
+            background: #f9fafb;
+            display: flex;
+            gap: 20px;
+        }
+
+        .review-card {
+            flex: 1;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .review-card p {
+            font-size: 14px;
+            color: #444;
+        }
+
+        .review-card h4 {
+            margin-top: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #1f2937;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="logo">WorkSphere EMS Portal</div>
+    <div class="nav-right">
+        <a th:href="@{/loginPage}"> <button class="btn login">Login</button></a>
+    </div>
+</div>
+
+<div class="hero">
+    <div class="hero-left">
+        <h1>Manage Employees Efficiently</h1>
+        <p>A complete Employee Management System built using MVC architecture with secure authentication, role-based access, and centralized database management.</p>
+        <button class="btn signup">Get Started</button>
+    </div>
+    <div class="hero-right"></div>
+</div>
+
+<div class="features">
+
+    <div class="feature-box">
+        <div class="number">1</div>
+        <h3>Employee Database</h3>
+        <p>Store, update, and manage employee records efficiently in a centralized system.</p>
+    </div>
+
+    <div class="feature-box">
+        <div class="number">2</div>
+        <h3>Role-Based Access</h3>
+        <p>Control access with roles like Admin, Manager, and Employee using Spring Security.</p>
+    </div>
+
+    <div class="feature-box">
+        <div class="number">3</div>
+        <h3>Secure Authentication</h3>
+        <p>Login and logout functionality with encrypted credentials and session management.</p>
+    </div>
+
+    <div class="feature-box">
+        <div class="number">4</div>
+        <h3>CRUD Operations</h3>
+        <p>Create, Read, Update, and Delete employee data seamlessly.</p>
+    </div>
+
+    <div class="feature-box">
+        <div class="number">5</div>
+        <h3>MVC Architecture</h3>
+        <p>Structured using Model-View-Controller for scalability and maintainability.</p>
+    </div>
+
+    <div class="feature-box">
+        <div class="number">6</div>
+        <h3>Data Security</h3>
+        <p>Protect sensitive employee data with secure backend and authorization layers.</p>
+    </div>
+
+</div>
+
+<div class="content">
+    <div class="content-left">
+        <h2>Streamlining Workforce Management</h2>
+        <p>This system helps organizations efficiently manage employees, enforce security policies, and maintain structured data using modern backend technologies.</p>
+    </div>
+    <div class="content-right"></div>
+</div>
+
+
+<div class="reviews">
+    <div class="review-card">
+        <p>"Managing employees has never been easier. Clean and efficient system!"</p>
+        <h4>- HR Manager</h4>
+    </div>
+
+    <div class="review-card">
+        <p>"Role-based access control is very useful for team management."</p>
+        <h4>- Team Lead</h4>
+    </div>
+
+    <div class="review-card">
+        <p>"Secure login and structured design make this system reliable."</p>
+        <h4>- System Admin</h4>
+    </div>
+</div>
+
+<div class="footer">
+    © 2026 Employee Management System. All rights reserved.
+</div>
+
+</body>
+</html>

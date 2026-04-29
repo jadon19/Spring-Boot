@@ -1,0 +1,256 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Employee Directory</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            background: #f9fafb;
+            color: #111827;
+        }
+
+        .topbar {
+            background: #1f2937;
+            color: white;
+            padding: 0 25px;
+            height: 64px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .topbar .brand {
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            font-size: 18px;
+        }
+
+        .container {
+            display: flex;
+            min-height: calc(100vh - 64px);
+        }
+
+        .sidebar {
+            width: 260px;
+            background: #f3f4f6;
+            padding: 24px 16px;
+            border-right: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-nav {
+            flex-grow: 1;
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            margin-bottom: 4px;
+            text-decoration: none;
+            color: #4b5563;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar a:hover {
+            background: #e0e7ff;
+            color: #1f2937;
+        }
+
+        .sidebar form {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .sidebar form input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            background: white;
+            color: #374151;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar form input:hover {
+            background: #f9fafb;
+            border-color: #9ca3af;
+        }
+
+        .main {
+            flex: 1;
+            padding: 40px;
+            max-width: 1200px;
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .table-header {
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .table-header h3 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            background: #f9fafb;
+            padding: 16px 24px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #6b7280;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        td {
+            padding: 16px 24px;
+            font-size: 14px;
+            color: #374151;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        tr:hover {
+            background-color: #f9fafb;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #eef2ff;
+            color: #312e81;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary:hover {
+            background: #ddd6fe;
+        }
+
+        .btn-danger {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #fee2e2;
+            color: #991b1b;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+
+        .btn-danger:hover {
+            background: #fecaca;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <div class="brand">WorkSphere</div>
+    <div>
+        User: <strong sec:authentication="principal.username"></strong>
+    </div>
+</div>
+
+<div class="container">
+    <div class="sidebar">
+        <div class="sidebar-nav">
+            <a th:href="@{/employee/dashboard}">Home</a>
+            <a th:href="@{/employee/settings}">Settings</a>
+            <div sec:authorize="hasRole('MANAGER')">
+                <a th:href="@{/manager}">Manager Dashboard</a>
+            </div>
+            <div sec:authorize="hasRole('ADMIN')">
+                <a th:href="@{/admin}">Admin Dashboard</a>
+            </div>
+        </div>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out">
+        </form>
+    </div>
+
+    <div class="main">
+        <div class="table-container">
+            <div class="table-header">
+                <h3>Employee Directory</h3>
+                <a th:href="@{/employees/add}" class="btn-primary">+ Add Employee</a>
+            </div>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                    <th>Admin Action</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="employee:${employees}">
+                    <td th:text="${employee.firstName}"></td>
+                    <td th:text="${employee.lastName}"></td>
+                    <td th:text="${employee.email}"></td>
+
+                    <td>
+                        <a class="btn-primary" th:href="@{/employees/update/{id}(id=${employee.id})}">
+                            Update
+                        </a>
+                    </td>
+
+                    <td>
+                        <a class="btn-danger" th:href="@{/employees/delete/{id}(id=${employee.id})}"
+                           onclick="if(!(confirm('Are you sure?'))) return false">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>
+        Login form
+    </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            width: 320px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .login-container h2 {
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 5px rgba(102,126,234,0.5);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: #667eea;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #5a67d8;
+        }
+
+        .footer-text {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #777;
+        }
+
+        .msg {
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .error {
+            background: rgba(255, 0, 0, 0.08);
+            color: #b30000;
+            border-color: rgba(255, 0, 0, 0.25);
+        }
+
+        .logged-out {
+            background: rgba(0, 200, 0, 0.08);
+            color: #006b00;
+            border-color: rgba(0, 200, 0, 0.25);
+        }
+
+    </style>
+</head>
+<body>
+
+</head>
+
+<body>
+
+<div class="login-container">
+    <h2>Login</h2>
+
+    <form th:action="@{/authenticateUser}" method="post">
+        <div>
+            <p class="msg error" th:if="${param.error}">Wrong Credentials!</p>
+        </div>
+        <div>
+            <p class="msg logged-out"  th:if="${param.logout}">You have been logged out!</p>
+        </div>
+        <div class="input-group">
+            <label>Name</label>
+            <input type="text" name="username" placeholder="Enter your name" required>
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter your password" required>
+
+        </div>
+
+        <button type="submit" class="login-btn">Login</button>
+    </form>
+
+    <div class="footer-text">
+        <a th:href="@{/}">Back to LMS Portal</a>
+    </div>
+</div>
+
+</body>
+</body>
+</html>

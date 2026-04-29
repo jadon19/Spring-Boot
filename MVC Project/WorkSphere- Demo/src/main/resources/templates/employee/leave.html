@@ -1,0 +1,33 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml" >
+<head>
+    <link  rel="stylesheet"  th:href="@{/dashboard.css}">
+</head>
+<body>
+<div class="container">
+    <h2>Apply Leave</h2>
+
+    <div class="card">
+        <form th:action="@{/employee/leave}" method="post">
+
+            <label>Leave Type</label>
+            <select name="type">
+                <option value="SICK">Sick Leave</option>
+                <option value="CASUAL">Casual Leave</option>
+                <option value="PAID">Paid Leave</option>
+            </select>
+
+            <label>From Date</label>
+            <input type="date" name="fromDate" required>
+
+            <label>To Date</label>
+            <input type="date" name="toDate" required>
+
+            <label>Reason</label>
+            <textarea name="reason"></textarea>
+
+            <button type="submit">Apply</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
